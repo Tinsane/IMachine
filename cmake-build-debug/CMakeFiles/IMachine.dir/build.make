@@ -201,57 +201,33 @@ CMakeFiles/IMachine.dir/src/buffered_file_reader.c.o.provides: CMakeFiles/IMachi
 CMakeFiles/IMachine.dir/src/buffered_file_reader.c.o.provides.build: CMakeFiles/IMachine.dir/src/buffered_file_reader.c.o
 
 
-CMakeFiles/IMachine.dir/src/arg_parse.c.o: CMakeFiles/IMachine.dir/flags.make
-CMakeFiles/IMachine.dir/src/arg_parse.c.o: ../src/arg_parse.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/IMachine.dir/src/arg_parse.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IMachine.dir/src/arg_parse.c.o   -c /home/vladimirlesk/CLionProjects/shad/IMachine/src/arg_parse.c
+CMakeFiles/IMachine.dir/src/parse_number.c.o: CMakeFiles/IMachine.dir/flags.make
+CMakeFiles/IMachine.dir/src/parse_number.c.o: ../src/parse_number.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/IMachine.dir/src/parse_number.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IMachine.dir/src/parse_number.c.o   -c /home/vladimirlesk/CLionProjects/shad/IMachine/src/parse_number.c
 
-CMakeFiles/IMachine.dir/src/arg_parse.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/IMachine.dir/src/arg_parse.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/vladimirlesk/CLionProjects/shad/IMachine/src/arg_parse.c > CMakeFiles/IMachine.dir/src/arg_parse.c.i
+CMakeFiles/IMachine.dir/src/parse_number.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/IMachine.dir/src/parse_number.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/vladimirlesk/CLionProjects/shad/IMachine/src/parse_number.c > CMakeFiles/IMachine.dir/src/parse_number.c.i
 
-CMakeFiles/IMachine.dir/src/arg_parse.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IMachine.dir/src/arg_parse.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/vladimirlesk/CLionProjects/shad/IMachine/src/arg_parse.c -o CMakeFiles/IMachine.dir/src/arg_parse.c.s
+CMakeFiles/IMachine.dir/src/parse_number.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IMachine.dir/src/parse_number.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/vladimirlesk/CLionProjects/shad/IMachine/src/parse_number.c -o CMakeFiles/IMachine.dir/src/parse_number.c.s
 
-CMakeFiles/IMachine.dir/src/arg_parse.c.o.requires:
+CMakeFiles/IMachine.dir/src/parse_number.c.o.requires:
 
-.PHONY : CMakeFiles/IMachine.dir/src/arg_parse.c.o.requires
+.PHONY : CMakeFiles/IMachine.dir/src/parse_number.c.o.requires
 
-CMakeFiles/IMachine.dir/src/arg_parse.c.o.provides: CMakeFiles/IMachine.dir/src/arg_parse.c.o.requires
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/arg_parse.c.o.provides.build
-.PHONY : CMakeFiles/IMachine.dir/src/arg_parse.c.o.provides
+CMakeFiles/IMachine.dir/src/parse_number.c.o.provides: CMakeFiles/IMachine.dir/src/parse_number.c.o.requires
+	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/parse_number.c.o.provides.build
+.PHONY : CMakeFiles/IMachine.dir/src/parse_number.c.o.provides
 
-CMakeFiles/IMachine.dir/src/arg_parse.c.o.provides.build: CMakeFiles/IMachine.dir/src/arg_parse.c.o
-
-
-CMakeFiles/IMachine.dir/src/util.c.o: CMakeFiles/IMachine.dir/flags.make
-CMakeFiles/IMachine.dir/src/util.c.o: ../src/util.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/IMachine.dir/src/util.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IMachine.dir/src/util.c.o   -c /home/vladimirlesk/CLionProjects/shad/IMachine/src/util.c
-
-CMakeFiles/IMachine.dir/src/util.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/IMachine.dir/src/util.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/vladimirlesk/CLionProjects/shad/IMachine/src/util.c > CMakeFiles/IMachine.dir/src/util.c.i
-
-CMakeFiles/IMachine.dir/src/util.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IMachine.dir/src/util.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/vladimirlesk/CLionProjects/shad/IMachine/src/util.c -o CMakeFiles/IMachine.dir/src/util.c.s
-
-CMakeFiles/IMachine.dir/src/util.c.o.requires:
-
-.PHONY : CMakeFiles/IMachine.dir/src/util.c.o.requires
-
-CMakeFiles/IMachine.dir/src/util.c.o.provides: CMakeFiles/IMachine.dir/src/util.c.o.requires
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/util.c.o.provides.build
-.PHONY : CMakeFiles/IMachine.dir/src/util.c.o.provides
-
-CMakeFiles/IMachine.dir/src/util.c.o.provides.build: CMakeFiles/IMachine.dir/src/util.c.o
+CMakeFiles/IMachine.dir/src/parse_number.c.o.provides.build: CMakeFiles/IMachine.dir/src/parse_number.c.o
 
 
 CMakeFiles/IMachine.dir/src/assembler.c.o: CMakeFiles/IMachine.dir/flags.make
 CMakeFiles/IMachine.dir/src/assembler.c.o: ../src/assembler.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/IMachine.dir/src/assembler.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/IMachine.dir/src/assembler.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IMachine.dir/src/assembler.c.o   -c /home/vladimirlesk/CLionProjects/shad/IMachine/src/assembler.c
 
 CMakeFiles/IMachine.dir/src/assembler.c.i: cmake_force
@@ -275,7 +251,7 @@ CMakeFiles/IMachine.dir/src/assembler.c.o.provides.build: CMakeFiles/IMachine.di
 
 CMakeFiles/IMachine.dir/src/code_line.c.o: CMakeFiles/IMachine.dir/flags.make
 CMakeFiles/IMachine.dir/src/code_line.c.o: ../src/code_line.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/IMachine.dir/src/code_line.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/IMachine.dir/src/code_line.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IMachine.dir/src/code_line.c.o   -c /home/vladimirlesk/CLionProjects/shad/IMachine/src/code_line.c
 
 CMakeFiles/IMachine.dir/src/code_line.c.i: cmake_force
@@ -299,7 +275,7 @@ CMakeFiles/IMachine.dir/src/code_line.c.o.provides.build: CMakeFiles/IMachine.di
 
 CMakeFiles/IMachine.dir/src/tokenized_reader.c.o: CMakeFiles/IMachine.dir/flags.make
 CMakeFiles/IMachine.dir/src/tokenized_reader.c.o: ../src/tokenized_reader.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/IMachine.dir/src/tokenized_reader.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/IMachine.dir/src/tokenized_reader.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IMachine.dir/src/tokenized_reader.c.o   -c /home/vladimirlesk/CLionProjects/shad/IMachine/src/tokenized_reader.c
 
 CMakeFiles/IMachine.dir/src/tokenized_reader.c.i: cmake_force
@@ -329,8 +305,7 @@ IMachine_OBJECTS = \
 "CMakeFiles/IMachine.dir/src/executer.c.o" \
 "CMakeFiles/IMachine.dir/src/subprocess.c.o" \
 "CMakeFiles/IMachine.dir/src/buffered_file_reader.c.o" \
-"CMakeFiles/IMachine.dir/src/arg_parse.c.o" \
-"CMakeFiles/IMachine.dir/src/util.c.o" \
+"CMakeFiles/IMachine.dir/src/parse_number.c.o" \
 "CMakeFiles/IMachine.dir/src/assembler.c.o" \
 "CMakeFiles/IMachine.dir/src/code_line.c.o" \
 "CMakeFiles/IMachine.dir/src/tokenized_reader.c.o"
@@ -344,14 +319,13 @@ IMachine: CMakeFiles/IMachine.dir/src/instruction_set.c.o
 IMachine: CMakeFiles/IMachine.dir/src/executer.c.o
 IMachine: CMakeFiles/IMachine.dir/src/subprocess.c.o
 IMachine: CMakeFiles/IMachine.dir/src/buffered_file_reader.c.o
-IMachine: CMakeFiles/IMachine.dir/src/arg_parse.c.o
-IMachine: CMakeFiles/IMachine.dir/src/util.c.o
+IMachine: CMakeFiles/IMachine.dir/src/parse_number.c.o
 IMachine: CMakeFiles/IMachine.dir/src/assembler.c.o
 IMachine: CMakeFiles/IMachine.dir/src/code_line.c.o
 IMachine: CMakeFiles/IMachine.dir/src/tokenized_reader.c.o
 IMachine: CMakeFiles/IMachine.dir/build.make
 IMachine: CMakeFiles/IMachine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking C executable IMachine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking C executable IMachine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/IMachine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -365,8 +339,7 @@ CMakeFiles/IMachine.dir/requires: CMakeFiles/IMachine.dir/src/instruction_set.c.
 CMakeFiles/IMachine.dir/requires: CMakeFiles/IMachine.dir/src/executer.c.o.requires
 CMakeFiles/IMachine.dir/requires: CMakeFiles/IMachine.dir/src/subprocess.c.o.requires
 CMakeFiles/IMachine.dir/requires: CMakeFiles/IMachine.dir/src/buffered_file_reader.c.o.requires
-CMakeFiles/IMachine.dir/requires: CMakeFiles/IMachine.dir/src/arg_parse.c.o.requires
-CMakeFiles/IMachine.dir/requires: CMakeFiles/IMachine.dir/src/util.c.o.requires
+CMakeFiles/IMachine.dir/requires: CMakeFiles/IMachine.dir/src/parse_number.c.o.requires
 CMakeFiles/IMachine.dir/requires: CMakeFiles/IMachine.dir/src/assembler.c.o.requires
 CMakeFiles/IMachine.dir/requires: CMakeFiles/IMachine.dir/src/code_line.c.o.requires
 CMakeFiles/IMachine.dir/requires: CMakeFiles/IMachine.dir/src/tokenized_reader.c.o.requires

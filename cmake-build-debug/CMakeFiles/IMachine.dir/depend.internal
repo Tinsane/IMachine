@@ -7,9 +7,6 @@ CMakeFiles/IMachine.dir/asm.c.o
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/buffered_file_reader.h
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/code_line.h
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/macro.h
-CMakeFiles/IMachine.dir/src/arg_parse.c.o
- /home/vladimirlesk/CLionProjects/shad/IMachine/src/arg_parse.c
- /home/vladimirlesk/CLionProjects/shad/IMachine/src/arg_parse.h
 CMakeFiles/IMachine.dir/src/assembler.c.o
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/assembler.c
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/assembler.h
@@ -22,14 +19,13 @@ CMakeFiles/IMachine.dir/src/buffered_file_reader.c.o
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/buffered_file_reader.c
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/buffered_file_reader.h
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/macro.h
- /home/vladimirlesk/CLionProjects/shad/IMachine/src/util.h
 CMakeFiles/IMachine.dir/src/code_line.c.o
- /home/vladimirlesk/CLionProjects/shad/IMachine/src/arg_parse.h
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/code_line.c
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/code_line.h
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/instruction_set.h
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/instructions.h
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/macro.h
+ /home/vladimirlesk/CLionProjects/shad/IMachine/src/parse_number.h
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/tokenized_reader.h
 CMakeFiles/IMachine.dir/src/executer.c.o
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/buffered_file_reader.h
@@ -43,6 +39,9 @@ CMakeFiles/IMachine.dir/src/instruction_set.c.o
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/instruction_set.h
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/instructions.h
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/macro.h
+CMakeFiles/IMachine.dir/src/parse_number.c.o
+ /home/vladimirlesk/CLionProjects/shad/IMachine/src/parse_number.c
+ /home/vladimirlesk/CLionProjects/shad/IMachine/src/parse_number.h
 CMakeFiles/IMachine.dir/src/subprocess.c.o
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/instruction_set.h
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/instructions.h
@@ -50,11 +49,7 @@ CMakeFiles/IMachine.dir/src/subprocess.c.o
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/subprocess.c
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/subprocess.h
 CMakeFiles/IMachine.dir/src/tokenized_reader.c.o
- /home/vladimirlesk/CLionProjects/shad/IMachine/src/macro.h
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/tokenized_reader.c
  /home/vladimirlesk/CLionProjects/shad/IMachine/src/tokenized_reader.h
-CMakeFiles/IMachine.dir/src/util.c.o
- /home/vladimirlesk/CLionProjects/shad/IMachine/src/util.c
- /home/vladimirlesk/CLionProjects/shad/IMachine/src/util.h
 CMakeFiles/IMachine.dir/vm.c.o
  /home/vladimirlesk/CLionProjects/shad/IMachine/vm.c

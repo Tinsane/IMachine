@@ -35,7 +35,6 @@ SRC = \
 		src/executer.o
 
 UNIT_TESTS = \
-		unit_tests/test_code_line.o \
 		unit_tests/test_parse_number.o \
 		unit_tests/test_instruction_set.o \
 		unit_tests/test_tokenized_reader.o

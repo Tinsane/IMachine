@@ -21,7 +21,7 @@ void InitAssembler(struct Assembler *assembler) {
 }
 
 static bool SetLineLabel(struct Assembler *assembler, size_t lineId, int8_t offset) {
-    uint16_t mask = (*(uint8_t *) (&offset)) << (16u - BIG_OPCODE_SIZE - IMM8_SIZE);
+    uint16_t mask = (*(uint8_t *) (&offset)) << (BIG_OPCODE_OFFSET - IMM8_SIZE);
     size_t changedLineId = lineId % MAX_JUMP;
 
     if (!(assembler->InstructionWindow[changedLineId] & LABEL_SUBSTITUTION_FLAG)) {

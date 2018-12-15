@@ -28,6 +28,7 @@ struct Subprocess *NewSubprocess(uint16_t *memory, uint32_t ticksToExecute, uint
     subprocess->Memory = memory;
     subprocess->TicksToExecute = ticksToExecute;
     subprocess->RegisterSets[SP_ID] = stackAddr;
+    subprocess->RegisterSets[IP_ID] = stackAddr;
     return subprocess;
 }
 
@@ -40,7 +41,7 @@ bool RunInstruction(struct Subprocess *subprocess) {
     uint16_t IP = subprocess->RegisterSets[IP_ID];
     uint16_t instructionId;
     EXIT_WITH_ERROR_IF(IP & 1u, "Unaligned instruction access error!");
-    rawOperation = subprocess->Memory[IP];
+    rawOperation = subprocess->Memory[IP >> 1u];
     instructionId = GetInstructionId(rawOperation);
     EXIT_WITH_ERROR_IF(instructionId == INVALID_INSTRUCTION_ID,
                        "Tried to run an instruction with invalid id");

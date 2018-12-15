@@ -18,20 +18,6 @@ src/buffered_file_reader.h
 src/assembler.h
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/assembler.h
 
-/home/vladimirlesk/CLionProjects/shad/IMachine/src/arg_parse.c
-stdint.h
--
-stdbool.h
--
-memory.h
--
-ctype.h
--
-arg_parse.h
-/home/vladimirlesk/CLionProjects/shad/IMachine/src/arg_parse.h
-
-/home/vladimirlesk/CLionProjects/shad/IMachine/src/arg_parse.h
-
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/assembler.c
 stddef.h
 -
@@ -73,8 +59,6 @@ buffered_file_reader.h
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/buffered_file_reader.h
 macro.h
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/macro.h
-util.h
-/home/vladimirlesk/CLionProjects/shad/IMachine/src/util.h
 
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/buffered_file_reader.h
 stdbool.h
@@ -87,10 +71,6 @@ bits/types/FILE.h
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/code_line.c
 stddef.h
 -
-stdint.h
--
-errno.h
--
 memory.h
 -
 ctype.h
@@ -101,8 +81,8 @@ macro.h
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/macro.h
 instructions.h
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/instructions.h
-arg_parse.h
-/home/vladimirlesk/CLionProjects/shad/IMachine/src/arg_parse.h
+parse_number.h
+/home/vladimirlesk/CLionProjects/shad/IMachine/src/parse_number.h
 instruction_set.h
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/instruction_set.h
 tokenized_reader.h
@@ -110,6 +90,8 @@ tokenized_reader.h
 
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/code_line.h
 stdbool.h
+-
+stdint.h
 -
 
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/executer.c
@@ -154,6 +136,22 @@ instructions.h
 stdio.h
 -
 
+/home/vladimirlesk/CLionProjects/shad/IMachine/src/parse_number.c
+stdint.h
+-
+stdbool.h
+-
+memory.h
+-
+ctype.h
+-
+parse_number.h
+/home/vladimirlesk/CLionProjects/shad/IMachine/src/parse_number.h
+
+/home/vladimirlesk/CLionProjects/shad/IMachine/src/parse_number.h
+stdint.h
+-
+
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/subprocess.c
 malloc.h
 -
@@ -181,21 +179,11 @@ ctype.h
 -
 tokenized_reader.h
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/tokenized_reader.h
-macro.h
-/home/vladimirlesk/CLionProjects/shad/IMachine/src/macro.h
 
 /home/vladimirlesk/CLionProjects/shad/IMachine/src/tokenized_reader.h
 stddef.h
 -
 stdbool.h
--
-
-/home/vladimirlesk/CLionProjects/shad/IMachine/src/util.c
-util.h
-/home/vladimirlesk/CLionProjects/shad/IMachine/src/util.h
-
-/home/vladimirlesk/CLionProjects/shad/IMachine/src/util.h
-stddef.h
 -
 
 /home/vladimirlesk/CLionProjects/shad/IMachine/vm.c

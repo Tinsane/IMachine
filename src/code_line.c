@@ -58,7 +58,7 @@ DECLARE_PARSE_ARG(RS) {
         (argStr[2] != 'L' && argStr[2] != 'H') || argStr[3] != 0) {
         return false;
     }
-    *value = (uint16_t) (argStr[2] - '0');
+    *value = (uint16_t) (argStr[1] - '0');
     if (argStr[2] == 'H') {
         *value |= HIGH_FLAG;
     }
@@ -96,6 +96,7 @@ MAKE_ARG_PARSER(Label, 8);
 
 static bool ParseNArgs(struct TokenizedReader *reader, size_t n, struct ArgParser *parsers,
                        struct CodeLine *line) {
+    size_t offset = RAW_OP_SIZE;
     size_t i;
     uint16_t argValue;
     bool argParsingResult;
@@ -105,8 +106,8 @@ static bool ParseNArgs(struct TokenizedReader *reader, size_t n, struct ArgParse
         ReadToken(reader, argStr, LABEL_MAX_LEN + 1);
         argParsingResult = parsers[i].ParseArg(argStr, &argValue, line->InnerLabel);
         RETURNF_IF(!argParsingResult, false, "Failed to parse argument: %zu.\n", i);
-        line->RawInstruction <<= parsers[i].ArgSize;
-        line->RawInstruction |= argValue;
+        offset -= parsers[i].ArgSize;
+        line->RawInstruction |= argValue << offset;
     }
 
     if (line->InnerLabel[0] != 0) {
@@ -120,7 +121,6 @@ static bool ParseNArgs(struct TokenizedReader *reader, size_t n, struct ArgParse
 #define MOV2_MASK 2u
 #define MOVR_MASK 3u
 #define MOV_MASK 3u
-#define MOV_MASK_SIZE 2u
 
 #define MOVV_ID 0u
 #define MOV1_ID 14u
@@ -129,6 +129,7 @@ static bool ParseNArgs(struct TokenizedReader *reader, size_t n, struct ArgParse
 
 static bool ParseMovArgs(struct ArgParser *parsers, struct CodeLine *line,
                          char *argStr1, char *argStr2, uint16_t movMask) {
+    size_t offset = RAW_OP_SIZE;
     uint16_t argValue1;
     uint16_t argValue2;
     bool argParsingResult;
@@ -140,10 +141,10 @@ static bool ParseMovArgs(struct ArgParser *parsers, struct CodeLine *line,
     if (!argParsingResult) {
         return false;
     }
-    line->RawInstruction |= argValue1;
-    line->RawInstruction <<= parsers[1].ArgSize;
-    line->RawInstruction |= argValue2;
-    line->RawInstruction <<= MOV_MASK_SIZE;
+    offset -= parsers[0].ArgSize;
+    line->RawInstruction |= argValue1 << offset;
+    offset -= parsers[1].ArgSize;
+    line->RawInstruction |= argValue2 << offset;
     line->RawInstruction |= movMask;
     return true;
 }
@@ -357,15 +358,14 @@ static bool ParseInstruction(struct TokenizedReader *source, struct CodeLine *co
             default:
                 break;
         }
-        codeLine->RawInstruction >>= MOV_MASK_SIZE;
     }
     if (instructionId < BIG_INSTRUCTION_CNT) {
         codeLine->RawInstruction >>= BIG_OPCODE_SIZE;
-        codeLine->RawInstruction |= (instructionId) << (16u - BIG_OPCODE_SIZE);
+        codeLine->RawInstruction |= (instructionId) << BIG_OPCODE_OFFSET;
         codeLine->RawInstruction |= BIG_INSTRUCTION_MARKER;
     } else {
         codeLine->RawInstruction >>= SMALL_OPCODE_SIZE;
-        codeLine->RawInstruction |= instructionId << (16u - SMALL_OPCODE_SIZE);
+        codeLine->RawInstruction |= instructionId << SMALL_OPCODE_OFFSET;
     }
     return true;
 }
@@ -405,7 +405,6 @@ char *INSTRUCTION_NAMES = "mov jne je cmpxchg jmp call shr shl xor sub or mul mo
 #undef MOV2_ID
 #undef MOV1_ID
 #undef MOVV_ID
-#undef MOV_MASK_SIZE
 #undef MOV_MASK
 #undef MOVR_MASK
 #undef MOV2_MASK

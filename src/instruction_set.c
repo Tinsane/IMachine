@@ -91,13 +91,13 @@ static bool AdjustIP(int8_t jumpDelta, uint16_t registers[]) {
 }
 
 DECLARE_INSTRUCTION(movv) {
-    EXTRACT_TWO_ARGS(rawOperation, BIG_OPCODE_SIZE, dstId, RX_ID_SZ, value, IMM8_SIZE);
-    registers[dstId] = value;
+    EXTRACT_TWO_ARGS(rawOperation, BIG_OPCODE_OFFSET, dstId, RS_ID_SZ, value, IMM8_SIZE);
+    *RS_PTR(dstId) = value;
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(jne) {
-    EXTRACT_TWO_ARGS(rawOperation, BIG_OPCODE_SIZE, jumpDelta, IMM8_SIZE, registerId, RX_ID_SZ);
+    EXTRACT_TWO_ARGS(rawOperation, BIG_OPCODE_OFFSET, jumpDelta, IMM8_SIZE, registerId, RX_ID_SZ);
     if (registers[registerId] == 0) {
         SUBMIT_INSTRUCTION();
     }
@@ -105,7 +105,7 @@ DECLARE_INSTRUCTION(jne) {
 }
 
 DECLARE_INSTRUCTION(je) {
-    EXTRACT_TWO_ARGS(rawOperation, BIG_OPCODE_SIZE, jumpDelta, IMM8_SIZE, registerId, RX_ID_SZ);
+    EXTRACT_TWO_ARGS(rawOperation, BIG_OPCODE_OFFSET, jumpDelta, IMM8_SIZE, registerId, RX_ID_SZ);
     if (registers[registerId] != 0) {
         SUBMIT_INSTRUCTION();
     }
@@ -113,7 +113,7 @@ DECLARE_INSTRUCTION(je) {
 }
 
 DECLARE_INSTRUCTION(cmpxchg) {
-    EXTRACT_THREE_ARGS(rawOperation, BIG_OPCODE_SIZE, a, RX_ID_SZ, b, RX_ID_SZ, c, RX_ID_SZ);
+    EXTRACT_THREE_ARGS(rawOperation, BIG_OPCODE_OFFSET, a, RX_ID_SZ, b, RX_ID_SZ, c, RX_ID_SZ);
     CHECK_ADDRESS_ALIGNMENT(registers[a]);
     if (ACCESS_MEMORY(registers[a]) == registers[b]) {
         ACCESS_MEMORY(registers[a]) = registers[c];
@@ -123,12 +123,12 @@ DECLARE_INSTRUCTION(cmpxchg) {
 }
 
 DECLARE_INSTRUCTION(jmp) {
-    EXTRACT_ONE_ARG(rawOperation, BIG_OPCODE_SIZE, jumpDelta, IMM8_SIZE);
+    EXTRACT_ONE_ARG(rawOperation, BIG_OPCODE_OFFSET, jumpDelta, IMM8_SIZE);
     return AdjustIP(jumpDelta, registers);
 }
 
 DECLARE_INSTRUCTION(call) {
-    EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_SIZE, jumpDelta, IMM8_SIZE);
+    EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_OFFSET, jumpDelta, IMM8_SIZE);
     CHECK_SP_ALIGNMENT();
     DECREASE_SP();
     ACCESS_MEMORY(SP) = IP;
@@ -136,94 +136,94 @@ DECLARE_INSTRUCTION(call) {
 }
 
 DECLARE_INSTRUCTION(shr) {
-    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_SIZE, registerId, RX_ID_SZ, shift, IMM4_SIZE);
+    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_OFFSET, registerId, RX_ID_SZ, shift, IMM4_SIZE);
     registers[registerId] >>= shift;
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(shl) {
-    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_SIZE, registerId, RX_ID_SZ, shift, IMM4_SIZE);
+    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_OFFSET, registerId, RX_ID_SZ, shift, IMM4_SIZE);
     registers[registerId] <<= shift;
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(xor) {
-    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_SIZE, a, RX_ID_SZ, b, RX_ID_SZ);
+    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_OFFSET, a, RX_ID_SZ, b, RX_ID_SZ);
     registers[a] ^= registers[b];
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(sub) {
-    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_SIZE, a, RX_ID_SZ, b, RX_ID_SZ);
+    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_OFFSET, a, RX_ID_SZ, b, RX_ID_SZ);
     registers[a] -= registers[b];
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(or) {
-    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_SIZE, a, RX_ID_SZ, b, RX_ID_SZ);
+    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_OFFSET, a, RX_ID_SZ, b, RX_ID_SZ);
     registers[a] |= registers[b];
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(mul) {
-    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_SIZE, a, RX_ID_SZ, b, RX_ID_SZ);
+    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_OFFSET, a, RX_ID_SZ, b, RX_ID_SZ);
     registers[a] *= registers[b];
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(movr) {
-    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_SIZE, dstId, RX_ID_SZ, srcId, RX_ID_SZ);
+    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_OFFSET, dstId, RX_ID_SZ, srcId, RX_ID_SZ);
     registers[dstId] = registers[srcId];
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(mov2) {
-    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_SIZE, dstId, RX_ID_SZ, srcAddressId, RX_ID_SZ);
+    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_OFFSET, dstId, RX_ID_SZ, srcAddressId, RX_ID_SZ);
     CHECK_ADDRESS_ALIGNMENT(registers[srcAddressId]);
     registers[dstId] = ACCESS_MEMORY(registers[srcAddressId]);
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(mov1) {
-    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_SIZE, dstAddressId, RX_ID_SZ, srcId, RX_ID_SZ);
+    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_OFFSET, dstAddressId, RX_ID_SZ, srcId, RX_ID_SZ);
     CHECK_ADDRESS_ALIGNMENT(registers[dstAddressId]);
     ACCESS_MEMORY(registers[dstAddressId]) = registers[srcId];
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(div) {
-    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_SIZE, a, RX_ID_SZ, b, RX_ID_SZ);
+    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_OFFSET, a, RX_ID_SZ, b, RX_ID_SZ);
     FAIL_INSTRUCTION_IF(registers[b] == 0, DIVISION_BY_ZERO_MSG);
     registers[a] /= registers[b];
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(and) {
-    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_SIZE, a, RX_ID_SZ, b, RX_ID_SZ);
+    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_OFFSET, a, RX_ID_SZ, b, RX_ID_SZ);
     registers[a] &= registers[b];
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(add) {
-    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_SIZE, a, RX_ID_SZ, b, RX_ID_SZ);
+    EXTRACT_TWO_ARGS(rawOperation, SMALL_OPCODE_OFFSET, a, RX_ID_SZ, b, RX_ID_SZ);
     registers[a] += registers[b];
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(out) {
-    EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_SIZE, regId, RS_ID_SZ);
+    EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_OFFSET, regId, RS_ID_SZ);
     printf("%c", *RS_PTR(regId));
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(in) {
-    EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_SIZE, regId, RS_ID_SZ);
+    EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_OFFSET, regId, RS_ID_SZ);
     scanf("%c", RS_PTR(regId));
     SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(push) {
-    EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_SIZE, registerId, RX_ID_SZ);
+    EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_OFFSET, registerId, RX_ID_SZ);
     CHECK_SP_ALIGNMENT();
     DECREASE_SP();
     ACCESS_MEMORY(SP) = registers[registerId];
@@ -231,7 +231,7 @@ DECLARE_INSTRUCTION(push) {
 }
 
 DECLARE_INSTRUCTION(pop) {
-    EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_SIZE, registerId, RX_ID_SZ);
+    EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_OFFSET, registerId, RX_ID_SZ);
     CHECK_SP_ALIGNMENT();
     registers[registerId] = ACCESS_MEMORY(SP);
     INCREASE_SP();
@@ -239,7 +239,7 @@ DECLARE_INSTRUCTION(pop) {
 }
 
 DECLARE_INSTRUCTION(not) {
-    EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_SIZE, registerId, RX_ID_SZ);
+    EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_OFFSET, registerId, RX_ID_SZ);
     registers[registerId] = ~registers[registerId];
     SUBMIT_INSTRUCTION();
 }
@@ -292,13 +292,13 @@ bool (*INSTRUCTIONS[])(uint16_t, uint16_t[], uint16_t[]) = {
 uint16_t GetInstructionId(uint16_t rawOperation) {
     uint16_t instructionId;
     if (rawOperation & BIG_INSTRUCTION_MARKER) {
-        instructionId = (uint16_t) ((rawOperation ^ BIG_INSTRUCTION_MARKER) >> (RAW_OP_SIZE - BIG_OPCODE_SIZE));
+        instructionId = (uint16_t) ((rawOperation ^ BIG_INSTRUCTION_MARKER) >> BIG_OPCODE_OFFSET);
         if (instructionId >= BIG_INSTRUCTION_CNT) {
             return INVALID_INSTRUCTION_ID;
         }
         return instructionId;
     }
-    instructionId = rawOperation >> (RAW_OP_SIZE - SMALL_OPCODE_SIZE);
+    instructionId = rawOperation >> SMALL_OPCODE_OFFSET;
     if (instructionId < BIG_INSTRUCTION_CNT || instructionId >= INSTRUCTION_CNT) {
         return INVALID_INSTRUCTION_ID;
     }

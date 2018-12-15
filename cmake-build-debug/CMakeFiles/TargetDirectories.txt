@@ -1,3 +1,4 @@
 /home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles/IMachine.dir
+/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles/asm.dir
+/home/vladimirlesk/CLionProjects/shad/IMachine/cmake-build-debug/CMakeFiles/vm.dir

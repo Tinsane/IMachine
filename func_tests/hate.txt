@@ -1,0 +1,37 @@
+ mov R0H #73
+ out R0H
+ mov R0H #32
+ out R0H
+ mov R0H #104
+ out R0H
+ mov R0H #97
+ out R0H
+ mov R0H #116
+ out R0H
+ mov R0H #101
+ out R0H
+ mov R0H #32
+ out R0H
+ mov R0H #102
+ out R0H
+ mov R0H #42
+ out R0H
+ mov R0H #99
+ out R0H
+ mov R0H #107
+ out R0H
+ mov R0H #105
+ out R0H
+ mov R0H #110
+ out R0H
+ mov R0H #103
+ out R0H
+ mov R0H #32
+ out R0H
+ mov R0H #67
+ out R0H
+ mov R0H #33
+ out R0H
+ mov R0H #10
+ out R0H
+ call #220

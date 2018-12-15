@@ -111,17 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named IMachine
+# Target rules for targets named asm
 
 # Build rule for target.
-IMachine: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 IMachine
-.PHONY : IMachine
+asm: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 asm
+.PHONY : asm
 
 # fast build rule for target.
-IMachine/fast:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/build
-.PHONY : IMachine/fast
+asm/fast:
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/build
+.PHONY : asm/fast
+
+#=============================================================================
+# Target rules for targets named vm
+
+# Build rule for target.
+vm: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 vm
+.PHONY : vm
+
+# fast build rule for target.
+vm/fast:
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/build
+.PHONY : vm/fast
 
 asm.o: asm.c.o
 
@@ -129,7 +142,7 @@ asm.o: asm.c.o
 
 # target to build an object file
 asm.c.o:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/asm.c.o
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/asm.c.o
 .PHONY : asm.c.o
 
 asm.i: asm.c.i
@@ -138,7 +151,7 @@ asm.i: asm.c.i
 
 # target to preprocess a source file
 asm.c.i:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/asm.c.i
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/asm.c.i
 .PHONY : asm.c.i
 
 asm.s: asm.c.s
@@ -147,35 +160,8 @@ asm.s: asm.c.s
 
 # target to generate assembly for a file
 asm.c.s:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/asm.c.s
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/asm.c.s
 .PHONY : asm.c.s
-
-src/arg_parse.o: src/arg_parse.c.o
-
-.PHONY : src/arg_parse.o
-
-# target to build an object file
-src/arg_parse.c.o:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/arg_parse.c.o
-.PHONY : src/arg_parse.c.o
-
-src/arg_parse.i: src/arg_parse.c.i
-
-.PHONY : src/arg_parse.i
-
-# target to preprocess a source file
-src/arg_parse.c.i:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/arg_parse.c.i
-.PHONY : src/arg_parse.c.i
-
-src/arg_parse.s: src/arg_parse.c.s
-
-.PHONY : src/arg_parse.s
-
-# target to generate assembly for a file
-src/arg_parse.c.s:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/arg_parse.c.s
-.PHONY : src/arg_parse.c.s
 
 src/assembler.o: src/assembler.c.o
 
@@ -183,7 +169,8 @@ src/assembler.o: src/assembler.c.o
 
 # target to build an object file
 src/assembler.c.o:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/assembler.c.o
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/assembler.c.o
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/assembler.c.o
 .PHONY : src/assembler.c.o
 
 src/assembler.i: src/assembler.c.i
@@ -192,7 +179,8 @@ src/assembler.i: src/assembler.c.i
 
 # target to preprocess a source file
 src/assembler.c.i:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/assembler.c.i
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/assembler.c.i
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/assembler.c.i
 .PHONY : src/assembler.c.i
 
 src/assembler.s: src/assembler.c.s
@@ -201,7 +189,8 @@ src/assembler.s: src/assembler.c.s
 
 # target to generate assembly for a file
 src/assembler.c.s:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/assembler.c.s
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/assembler.c.s
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/assembler.c.s
 .PHONY : src/assembler.c.s
 
 src/buffered_file_reader.o: src/buffered_file_reader.c.o
@@ -210,7 +199,8 @@ src/buffered_file_reader.o: src/buffered_file_reader.c.o
 
 # target to build an object file
 src/buffered_file_reader.c.o:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/buffered_file_reader.c.o
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/buffered_file_reader.c.o
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/buffered_file_reader.c.o
 .PHONY : src/buffered_file_reader.c.o
 
 src/buffered_file_reader.i: src/buffered_file_reader.c.i
@@ -219,7 +209,8 @@ src/buffered_file_reader.i: src/buffered_file_reader.c.i
 
 # target to preprocess a source file
 src/buffered_file_reader.c.i:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/buffered_file_reader.c.i
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/buffered_file_reader.c.i
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/buffered_file_reader.c.i
 .PHONY : src/buffered_file_reader.c.i
 
 src/buffered_file_reader.s: src/buffered_file_reader.c.s
@@ -228,7 +219,8 @@ src/buffered_file_reader.s: src/buffered_file_reader.c.s
 
 # target to generate assembly for a file
 src/buffered_file_reader.c.s:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/buffered_file_reader.c.s
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/buffered_file_reader.c.s
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/buffered_file_reader.c.s
 .PHONY : src/buffered_file_reader.c.s
 
 src/code_line.o: src/code_line.c.o
@@ -237,7 +229,8 @@ src/code_line.o: src/code_line.c.o
 
 # target to build an object file
 src/code_line.c.o:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/code_line.c.o
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/code_line.c.o
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/code_line.c.o
 .PHONY : src/code_line.c.o
 
 src/code_line.i: src/code_line.c.i
@@ -246,7 +239,8 @@ src/code_line.i: src/code_line.c.i
 
 # target to preprocess a source file
 src/code_line.c.i:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/code_line.c.i
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/code_line.c.i
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/code_line.c.i
 .PHONY : src/code_line.c.i
 
 src/code_line.s: src/code_line.c.s
@@ -255,7 +249,8 @@ src/code_line.s: src/code_line.c.s
 
 # target to generate assembly for a file
 src/code_line.c.s:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/code_line.c.s
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/code_line.c.s
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/code_line.c.s
 .PHONY : src/code_line.c.s
 
 src/executer.o: src/executer.c.o
@@ -264,7 +259,8 @@ src/executer.o: src/executer.c.o
 
 # target to build an object file
 src/executer.c.o:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/executer.c.o
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/executer.c.o
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/executer.c.o
 .PHONY : src/executer.c.o
 
 src/executer.i: src/executer.c.i
@@ -273,7 +269,8 @@ src/executer.i: src/executer.c.i
 
 # target to preprocess a source file
 src/executer.c.i:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/executer.c.i
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/executer.c.i
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/executer.c.i
 .PHONY : src/executer.c.i
 
 src/executer.s: src/executer.c.s
@@ -282,7 +279,8 @@ src/executer.s: src/executer.c.s
 
 # target to generate assembly for a file
 src/executer.c.s:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/executer.c.s
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/executer.c.s
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/executer.c.s
 .PHONY : src/executer.c.s
 
 src/instruction_set.o: src/instruction_set.c.o
@@ -291,7 +289,8 @@ src/instruction_set.o: src/instruction_set.c.o
 
 # target to build an object file
 src/instruction_set.c.o:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/instruction_set.c.o
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/instruction_set.c.o
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/instruction_set.c.o
 .PHONY : src/instruction_set.c.o
 
 src/instruction_set.i: src/instruction_set.c.i
@@ -300,7 +299,8 @@ src/instruction_set.i: src/instruction_set.c.i
 
 # target to preprocess a source file
 src/instruction_set.c.i:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/instruction_set.c.i
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/instruction_set.c.i
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/instruction_set.c.i
 .PHONY : src/instruction_set.c.i
 
 src/instruction_set.s: src/instruction_set.c.s
@@ -309,8 +309,39 @@ src/instruction_set.s: src/instruction_set.c.s
 
 # target to generate assembly for a file
 src/instruction_set.c.s:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/instruction_set.c.s
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/instruction_set.c.s
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/instruction_set.c.s
 .PHONY : src/instruction_set.c.s
+
+src/parse_number.o: src/parse_number.c.o
+
+.PHONY : src/parse_number.o
+
+# target to build an object file
+src/parse_number.c.o:
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/parse_number.c.o
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/parse_number.c.o
+.PHONY : src/parse_number.c.o
+
+src/parse_number.i: src/parse_number.c.i
+
+.PHONY : src/parse_number.i
+
+# target to preprocess a source file
+src/parse_number.c.i:
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/parse_number.c.i
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/parse_number.c.i
+.PHONY : src/parse_number.c.i
+
+src/parse_number.s: src/parse_number.c.s
+
+.PHONY : src/parse_number.s
+
+# target to generate assembly for a file
+src/parse_number.c.s:
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/parse_number.c.s
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/parse_number.c.s
+.PHONY : src/parse_number.c.s
 
 src/subprocess.o: src/subprocess.c.o
 
@@ -318,7 +349,8 @@ src/subprocess.o: src/subprocess.c.o
 
 # target to build an object file
 src/subprocess.c.o:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/subprocess.c.o
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/subprocess.c.o
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/subprocess.c.o
 .PHONY : src/subprocess.c.o
 
 src/subprocess.i: src/subprocess.c.i
@@ -327,7 +359,8 @@ src/subprocess.i: src/subprocess.c.i
 
 # target to preprocess a source file
 src/subprocess.c.i:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/subprocess.c.i
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/subprocess.c.i
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/subprocess.c.i
 .PHONY : src/subprocess.c.i
 
 src/subprocess.s: src/subprocess.c.s
@@ -336,7 +369,8 @@ src/subprocess.s: src/subprocess.c.s
 
 # target to generate assembly for a file
 src/subprocess.c.s:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/subprocess.c.s
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/subprocess.c.s
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/subprocess.c.s
 .PHONY : src/subprocess.c.s
 
 src/tokenized_reader.o: src/tokenized_reader.c.o
@@ -345,7 +379,8 @@ src/tokenized_reader.o: src/tokenized_reader.c.o
 
 # target to build an object file
 src/tokenized_reader.c.o:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/tokenized_reader.c.o
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/tokenized_reader.c.o
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/tokenized_reader.c.o
 .PHONY : src/tokenized_reader.c.o
 
 src/tokenized_reader.i: src/tokenized_reader.c.i
@@ -354,7 +389,8 @@ src/tokenized_reader.i: src/tokenized_reader.c.i
 
 # target to preprocess a source file
 src/tokenized_reader.c.i:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/tokenized_reader.c.i
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/tokenized_reader.c.i
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/tokenized_reader.c.i
 .PHONY : src/tokenized_reader.c.i
 
 src/tokenized_reader.s: src/tokenized_reader.c.s
@@ -363,35 +399,9 @@ src/tokenized_reader.s: src/tokenized_reader.c.s
 
 # target to generate assembly for a file
 src/tokenized_reader.c.s:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/tokenized_reader.c.s
+	$(MAKE) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/tokenized_reader.c.s
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/src/tokenized_reader.c.s
 .PHONY : src/tokenized_reader.c.s
-
-src/util.o: src/util.c.o
-
-.PHONY : src/util.o
-
-# target to build an object file
-src/util.c.o:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/util.c.o
-.PHONY : src/util.c.o
-
-src/util.i: src/util.c.i
-
-.PHONY : src/util.i
-
-# target to preprocess a source file
-src/util.c.i:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/util.c.i
-.PHONY : src/util.c.i
-
-src/util.s: src/util.c.s
-
-.PHONY : src/util.s
-
-# target to generate assembly for a file
-src/util.c.s:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/src/util.c.s
-.PHONY : src/util.c.s
 
 vm.o: vm.c.o
 
@@ -399,7 +409,7 @@ vm.o: vm.c.o
 
 # target to build an object file
 vm.c.o:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/vm.c.o
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/vm.c.o
 .PHONY : vm.c.o
 
 vm.i: vm.c.i
@@ -408,7 +418,7 @@ vm.i: vm.c.i
 
 # target to preprocess a source file
 vm.c.i:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/vm.c.i
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/vm.c.i
 .PHONY : vm.c.i
 
 vm.s: vm.c.s
@@ -417,7 +427,7 @@ vm.s: vm.c.s
 
 # target to generate assembly for a file
 vm.c.s:
-	$(MAKE) -f CMakeFiles/IMachine.dir/build.make CMakeFiles/IMachine.dir/vm.c.s
+	$(MAKE) -f CMakeFiles/vm.dir/build.make CMakeFiles/vm.dir/vm.c.s
 .PHONY : vm.c.s
 
 # Help Target
@@ -428,13 +438,11 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... IMachine"
+	@echo "... asm"
+	@echo "... vm"
 	@echo "... asm.o"
 	@echo "... asm.i"
 	@echo "... asm.s"
-	@echo "... src/arg_parse.o"
-	@echo "... src/arg_parse.i"
-	@echo "... src/arg_parse.s"
 	@echo "... src/assembler.o"
 	@echo "... src/assembler.i"
 	@echo "... src/assembler.s"
@@ -450,15 +458,15 @@ help:
 	@echo "... src/instruction_set.o"
 	@echo "... src/instruction_set.i"
 	@echo "... src/instruction_set.s"
+	@echo "... src/parse_number.o"
+	@echo "... src/parse_number.i"
+	@echo "... src/parse_number.s"
 	@echo "... src/subprocess.o"
 	@echo "... src/subprocess.i"
 	@echo "... src/subprocess.s"
 	@echo "... src/tokenized_reader.o"
 	@echo "... src/tokenized_reader.i"
 	@echo "... src/tokenized_reader.s"
-	@echo "... src/util.o"
-	@echo "... src/util.i"
-	@echo "... src/util.s"
 	@echo "... vm.o"
 	@echo "... vm.i"
 	@echo "... vm.s"

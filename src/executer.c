@@ -38,12 +38,14 @@ void DeleteExecuter(struct Executer *executer) {
 
 bool LoadSubprocess(struct Executer *executer, uint16_t subprocessId, uint16_t codeOffset,
                     struct BufferedFileReader *codeProducer, uint32_t ticksToExecute) {
-    uint16_t i = codeOffset;
+    uint16_t i = codeOffset >> 1u;
     uint16_t opCode;
     RETURNF_IF(subprocessId >= executer->SubprocessCnt, false, "Unexpected subprocess id: %d!",
                subprocessId);
     RETURNF_IF(executer->Subprocesses[subprocessId] != NULL, false,
                "Subprocess under id %d is already initialized!", subprocessId);
+    RETURNF_IF(codeOffset & 1u, false, "Can't put code to odd offset for subprocess: %d!",
+               subprocessId);
     while (true) {
         if (!ReadUint16(codeProducer, &opCode)) {
             RETURNF_IF(IsError(codeProducer), false,
