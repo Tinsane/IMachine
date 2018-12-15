@@ -1,0 +1,3 @@
+ mov R0L #97
+ out R0L
+ reset

@@ -1,0 +1,3 @@
+kek: jmp kek
+lul: je azaz R0X
+azaz: jne lul R1X

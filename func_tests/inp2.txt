@@ -1,0 +1,24 @@
+ mov R0X R1X
+ mov R2X (R3X)
+ mov (R3X) R2X
+ mov R0H #10
+ mov R7L #44
+ push R3X
+ pop R5X
+ call #12
+ ret
+ add R1X R2X
+ sub R1X R2X
+ mul R1X R2X
+ div R1X R2X
+ and R1X R2X
+ xor R1X R2X
+ or R1X R2X
+ not R4X
+ shl R6X #0
+ shr R4X #15
+ reset
+ nop
+ in R1L
+ out R5H
+ cmpxchg (R1X) R2X R3X
