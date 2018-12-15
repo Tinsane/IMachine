@@ -1,0 +1,3 @@
+kek: mov R0L #65
+ out R0L
+ jmp kek

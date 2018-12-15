@@ -1,0 +1,5 @@
+ in R1L
+ in R2L
+ add R1X R2X
+ out R1L
+ reset

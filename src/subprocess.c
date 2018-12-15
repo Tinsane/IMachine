@@ -44,7 +44,11 @@ bool RunInstruction(struct Subprocess *subprocess) {
     rawOperation = subprocess->Memory[IP >> 1u];
     instructionId = GetInstructionId(rawOperation);
     EXIT_WITH_ERROR_IF(instructionId == INVALID_INSTRUCTION_ID,
-                       "Tried to run an instruction with invalid id");
+                       "Tried to run an instruction with invalid id!");
+    EXIT_WITH_ERROR_IF(subprocess->TicksToExecute != 0 &&
+                       subprocess->TicksExecuted == subprocess->TicksToExecute,
+                       "Subprocess exited because of timeout!");
+    ++subprocess->TicksExecuted;
     if (!INSTRUCTIONS[instructionId](rawOperation, subprocess->RegisterSets, subprocess->Memory)) {
         subprocess->ExitCode = InstructionSet_ExitCode;
         subprocess->Exited = true;

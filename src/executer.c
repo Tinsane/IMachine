@@ -103,14 +103,6 @@ extern bool RunExecution(struct Executer *executer) {
                        executer->CurrentSubprocessId, CURRENT_SUBPROCESS->ExitCode);
                 break;
             }
-            ++CURRENT_SUBPROCESS->TicksExecuted;
-            if (CURRENT_SUBPROCESS->TicksToExecute != 0 &&
-                CURRENT_SUBPROCESS->TicksExecuted == CURRENT_SUBPROCESS->TicksToExecute) {
-                ERRORF("Subprocess %d exited because of timeout\n", executer->CurrentSubprocessId);
-                CURRENT_SUBPROCESS->ExitCode = 1;
-                CURRENT_SUBPROCESS->Exited = true;
-                break;
-            }
         }
     }
     return true;

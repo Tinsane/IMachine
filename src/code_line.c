@@ -341,7 +341,7 @@ static bool ParseInstruction(struct TokenizedReader *source, struct CodeLine *co
         return false;
     }
     // corner case with mov
-    if (instructionId == MOVR_ID) {
+    if (instructionId == MOVV_ID) {
         switch (codeLine->RawInstruction & MOV_MASK) {
             case MOV1_MASK:
                 instructionId = MOV1_ID;

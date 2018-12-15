@@ -9,10 +9,10 @@
 #include <stdbool.h>
 
 struct TokenizedReader {
-    char *BufferPtr;
+    char const *BufferPtr;
 };
 
-extern struct TokenizedReader TokenizedReaderFromBuffer(char *buffer);
+extern struct TokenizedReader TokenizedReaderFromBuffer(char const *buffer);
 
 extern void ReadToken(struct TokenizedReader *reader, char *dst, size_t lengthLimit);
 

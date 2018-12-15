@@ -11,20 +11,26 @@ GTEST=googletest/googletest
 INCLUDES=-I$(GTEST) -I$(GTEST)/include
 WARN_OPTS=-Wall -Werror -pedantic
 
+SANITIZER=-fsanitize=address,undefined -fno-sanitize-recover=all
+
 COVERAGE=-fprofile-instr-generate -fcoverage-mapping
 
-.PHONY: clean coverage all asm vm check
+CFLAGS=$(WARN_OPTS) $(INCLUDES) $(SANITIZER) -std=c11 $(COVERAGE)
 
-clean:
-	find . -name '*.o' -delete
-
-
-CFLAGS=$(WARN_OPTS) $(INCLUDES) -std=c11 $(COVERAGE)
-
-CXXFLAGS=$(WARN_OPTS) $(INCLUDES) -std=c++17 $(COVERAGE)
-LDFLAGS=-lm -lpthread $(COVERAGE)
+CXXFLAGS=$(WARN_OPTS) $(INCLUDES) $(SANITIZER) -std=c++17 $(COVERAGE)
+LDFLAGS=$(SANITIZER) -lm -lpthread $(COVERAGE)
 
 SRC = \
+		src/parse_number.c \
+		src/assembler.c \
+		src/code_line.c \
+		src/tokenized_reader.c \
+		src/buffered_file_reader.c \
+		src/instruction_set.c \
+		src/subprocess.c \
+		src/executer.c
+
+SRCO = \
 		src/parse_number.o \
 		src/assembler.o \
 		src/code_line.o \
@@ -37,7 +43,13 @@ SRC = \
 UNIT_TESTS = \
 		unit_tests/test_parse_number.o \
 		unit_tests/test_instruction_set.o \
+		unit_tests/test_non_jump_instructions.o \
 		unit_tests/test_tokenized_reader.o
+
+.PHONY: clean coverage all asm vm check
+
+clean:
+	find . -name '*.o' -delete
 
 all: asm vm check
 
@@ -60,7 +72,7 @@ vm: \
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 check: \
-		$(SRC) \
+		$(SRCO) \
 		$(GTEST)/src/gtest-all.o \
 		$(GTEST)/src/gtest_main.o \
 		$(UNIT_TESTS)
@@ -70,5 +82,5 @@ coverage: check
 	LLVM_PROFILE_FILE=$^.profraw ./$^
 	$(LLVM_PROFDATA) merge -sparse $^.profraw -o $^.profdata
 	$(LLVM_COV) $(COVERAGE_FORMAT) \
-		-instr-profile=$^.profdata $^
+		-instr-profile=$^.profdata $^ $(SRC) 
 

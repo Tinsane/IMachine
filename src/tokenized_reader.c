@@ -6,7 +6,7 @@
 #include <ctype.h>
 #include "tokenized_reader.h"
 
-struct TokenizedReader TokenizedReaderFromBuffer(char *buffer) {
+struct TokenizedReader TokenizedReaderFromBuffer(char const *buffer) {
     struct TokenizedReader reader;
     reader.BufferPtr = buffer;
     return reader;

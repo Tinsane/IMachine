@@ -98,18 +98,18 @@ DECLARE_INSTRUCTION(movv) {
 
 DECLARE_INSTRUCTION(jne) {
     EXTRACT_TWO_ARGS(rawOperation, BIG_OPCODE_OFFSET, jumpDelta, IMM8_SIZE, registerId, RX_ID_SZ);
-    if (registers[registerId] == 0) {
-        SUBMIT_INSTRUCTION();
+    if (registers[registerId] != 0) {
+        return AdjustIP(jumpDelta, registers);
     }
-    return AdjustIP(jumpDelta, registers);
+    SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(je) {
     EXTRACT_TWO_ARGS(rawOperation, BIG_OPCODE_OFFSET, jumpDelta, IMM8_SIZE, registerId, RX_ID_SZ);
-    if (registers[registerId] != 0) {
-        SUBMIT_INSTRUCTION();
+    if (registers[registerId] == 0) {
+        return AdjustIP(jumpDelta, registers);
     }
-    return AdjustIP(jumpDelta, registers);
+    SUBMIT_INSTRUCTION();
 }
 
 DECLARE_INSTRUCTION(cmpxchg) {
@@ -131,7 +131,8 @@ DECLARE_INSTRUCTION(call) {
     EXTRACT_ONE_ARG(rawOperation, SMALL_OPCODE_OFFSET, jumpDelta, IMM8_SIZE);
     CHECK_SP_ALIGNMENT();
     DECREASE_SP();
-    ACCESS_MEMORY(SP) = IP;
+    FAIL_INSTRUCTION_IF(IP + 2u == 0u, IP_OUT_OF_MEMORY_MSG);
+    ACCESS_MEMORY(SP) = (uint16_t) (IP + 2u);
     return AdjustIP(jumpDelta, registers);
 }
 
