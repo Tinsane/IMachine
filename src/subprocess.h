@@ -13,7 +13,7 @@ struct Subprocess {
     uint32_t TicksToExecute;
     uint32_t TicksExecuted;
     uint16_t *Memory;
-    uint16_t RegisterSets[REGISTER_CNT];
+    uint16_t RegisterSet[REGISTER_CNT];
     bool Exited;
     uint8_t ExitCode;
 };

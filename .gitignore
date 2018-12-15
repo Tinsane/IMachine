@@ -1,7 +1,11 @@
 *.profraw
 *.profdata
+*.o
+*.swp
+*.bin
 check
 asm
 vm
-*.o
 googletest/
+cmake*
+CMakeLists.txt

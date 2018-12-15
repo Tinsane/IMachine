@@ -43,6 +43,7 @@ SRCO = \
 UNIT_TESTS = \
 		unit_tests/test_parse_number.o \
 		unit_tests/test_instruction_set.o \
+		unit_tests/test_subprocess.o \
 		unit_tests/test_non_jump_instructions.o \
 		unit_tests/test_tokenized_reader.o
 
@@ -50,6 +51,11 @@ UNIT_TESTS = \
 
 clean:
 	find . -name '*.o' -delete
+	rm asm
+	rm vm
+	rm check
+	rm *.profdata
+	rm *.profraw
 
 all: asm vm check
 

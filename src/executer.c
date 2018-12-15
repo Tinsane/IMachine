@@ -13,12 +13,12 @@ struct Executer *NewExecuter(uint16_t subprocessCnt, uint32_t ticksPerProcessIte
     uint32_t executerSz;
     uint16_t i;
 
-    RETURNF_IF(subprocessCnt == 0, NULL, "Expected non zero number of subprocess!");
+    RETURNF_IF(subprocessCnt == 0, NULL, "Expected non zero number of subprocess!\n");
     RETURNF_IF(ticksPerProcessIteration == 0, NULL,
-               "Expected non zero number of ticks per process iteration!");
+               "Expected non zero number of ticks per process iteration!\n");
     executerSz = sizeof(struct Executer) + subprocessCnt * sizeof(struct Subprocess *);
     executer = malloc(executerSz);
-    RETURNF_IF(executer == NULL, NULL, "Failed to allocate an executer!");
+    RETURNF_IF(executer == NULL, NULL, "Failed to allocate an executer!\n");
     executer->SubprocessCnt = subprocessCnt;
     executer->TicksPerProcessIteration = ticksPerProcessIteration;
     memset(executer->Memory, 0, sizeof(uint16_t) * MEMORY_SIZE);
@@ -40,32 +40,32 @@ bool LoadSubprocess(struct Executer *executer, uint16_t subprocessId, uint16_t c
                     struct BufferedFileReader *codeProducer, uint32_t ticksToExecute) {
     uint16_t i = codeOffset >> 1u;
     uint16_t opCode;
-    RETURNF_IF(subprocessId >= executer->SubprocessCnt, false, "Unexpected subprocess id: %d!",
+    RETURNF_IF(subprocessId >= executer->SubprocessCnt, false, "Unexpected subprocess id: %d!\n",
                subprocessId);
     RETURNF_IF(executer->Subprocesses[subprocessId] != NULL, false,
-               "Subprocess under id %d is already initialized!", subprocessId);
-    RETURNF_IF(codeOffset & 1u, false, "Can't put code to odd offset for subprocess: %d!",
+               "Subprocess under id %d is already initialized!\n", subprocessId);
+    RETURNF_IF(codeOffset & 1u, false, "Can't put code to odd offset for subprocess: %d!\n",
                subprocessId);
     while (true) {
         if (!ReadUint16(codeProducer, &opCode)) {
             RETURNF_IF(IsError(codeProducer), false,
-                       "Got error while loading subprocess %d from file!", subprocessId);
+                       "Got error while loading subprocess %d from file!\n", subprocessId);
             // No error and no EOF, just means that we have not enough data for one instruction.
             // So, we have an odd number of bytes in code file, which is invalid
             RETURNF_IF(!IsEOF(codeProducer), false,
-                       "Got an error while reading subprocess codes, last code is not full!");
+                       "Got an error while reading subprocess codes, last code is not full!\n");
             break;
         }
-        RETURNF_IF(executer->Memory[i] != 0, false, "Can't load intersecting subprocesses!");
+        RETURNF_IF(executer->Memory[i] != 0, false, "Can't load intersecting subprocesses!\n");
         executer->Memory[i] = opCode;
         ++i;
-        RETURNF_IF(i == 0, false, "Can't load code of subprocess %d in memory with given offset!",
+        RETURNF_IF(i == 0, false, "Can't load code of subprocess %d in memory with given offset!\n",
                    subprocessId);
     }
     executer->Subprocesses[subprocessId] = NewSubprocess(executer->Memory, ticksToExecute,
                                                          codeOffset);
     RETURNF_IF(executer->Subprocesses[subprocessId] == NULL, false,
-               "Failed to allocate a subprocess %d!", subprocessId);
+               "Failed to allocate a subprocess %d!\n", subprocessId);
     return true;
 }
 
@@ -89,7 +89,7 @@ extern bool RunExecution(struct Executer *executer) {
     uint32_t i;
     for (i = 0; i < executer->SubprocessCnt; ++i) {
         RETURNF_IF(executer->Subprocesses[i] == NULL, false,
-                   "Can't start execution before loading all the processes!");
+                   "Can't start execution before loading all the processes!\n");
     }
     executer->CurrentSubprocessId = 0;
     while (true) {

@@ -15,43 +15,45 @@ using std::function;
 using std::string;
 using std::set;
 
-class TestNonJumpInstructions : public ::testing::Test {
+class TestSubprocess : public ::testing::Test {
 protected:
     void SetUp() {
         memset(Memory, 0, sizeof Memory);
-        memset(Registers, 0, sizeof Registers);
-        ResetLine(&line);
     }
     void TearDown() {
     }
     uint16_t Memory[MEMORY_SZ];
-    uint16_t Registers[REGISTER_CNT];
-    CodeLine line;
-
-    void TestInstruction(
-            string strInstruction,
-            function<void(uint16_t[], uint16_t[])> setUp,
-            function<void(uint16_t[], uint16_t[])> check) {
-        setUp(Registers, Memory);
-        auto reader = TokenizedReaderFromBuffer(strInstruction.c_str());
-        ASSERT_TRUE(ParseLine(&reader, &line));
-        auto instructionId = GetInstructionId(line.RawInstruction);
-        EXPECT_TRUE(INSTRUCTIONS[instructionId](line.RawInstruction, Registers, Memory));
-        check(Registers, Memory);
-    }
-
-    void CheckStateExcept(set<size_t> changedRegs, set<size_t> changedMemoryCells = {}) {
-        for (size_t i = 0; i < MEMORY_SZ; ++i) {
-            if (!changedMemoryCells.count(i)) {
-                EXPECT_EQ(Memory[i], 0);
-            }
-        }
-        for (size_t i = 0; i < REGISTER_CNT; ++i) {
-            if (!changedRegs.count(i)) {
-                EXPECT_EQ(Registers[i], 0);
-            }
-        }
-    }
-
 };
+
+TEST_F(TestSubprocess, TestRunInstruction_TicksOver) {
+    auto subprocess = NewSubprocess(Memory, 1, 10);
+    subprocess->TicksExecuted = 1;
+    EXPECT_FALSE(RunInstruction(subprocess));
+    DeleteSubprocess(subprocess);
+}
+
+TEST_F(TestSubprocess, TestRunInstruction_UnalignedIP) {
+    auto subprocess = NewSubprocess(Memory, 1, 10);
+    subprocess->RegisterSet[8] = 1;
+    EXPECT_FALSE(RunInstruction(subprocess));
+    DeleteSubprocess(subprocess);
+}
+
+TEST_F(TestSubprocess, TestRunInstruction_InvalidInstruction) {
+    auto subprocess = NewSubprocess(Memory, 1, 10);
+    EXPECT_FALSE(RunInstruction(subprocess));
+    DeleteSubprocess(subprocess);
+}
+
+TEST_F(TestSubprocess, TestRunInstruction_OkInstruction) {
+    CodeLine line;
+    ResetLine(&line);
+    auto subprocess = NewSubprocess(Memory, 2, 10);
+    char strInstruction[] = " nop";
+    auto reader = TokenizedReaderFromBuffer(strInstruction);
+    ASSERT_TRUE(ParseLine(&reader, &line));
+    Memory[5] = line.RawInstruction;
+    EXPECT_TRUE(RunInstruction(subprocess));
+    DeleteSubprocess(subprocess);
+}
 
