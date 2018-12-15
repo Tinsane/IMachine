@@ -6,6 +6,7 @@
 #define IMACHINE_CODE_LINE_H
 
 #include <stdbool.h>
+#include <stdint.h>
 
 #define LABEL_MAX_LEN 20u
 

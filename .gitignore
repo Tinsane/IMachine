@@ -1,0 +1,7 @@
+*.profraw
+*.profdata
+check
+asm
+vm
+*.o
+googletest/

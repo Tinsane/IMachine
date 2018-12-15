@@ -14,7 +14,6 @@ struct BufferedFileReader {
     size_t BufferSize;
     size_t BufferedDataSize;
     size_t BufferConsumed;
-    int ErrNo;
     char BufferedData[];
 };
 
@@ -27,8 +26,6 @@ extern bool IsEOF(struct BufferedFileReader* reader);
 extern bool IsError(struct BufferedFileReader* reader);
 
 extern bool ReadLine(struct BufferedFileReader* reader, char* dst, size_t lengthLimit);
-
-extern int GetErrNo(struct BufferedFileReader* reader);
 
 // Returns false if can't read uint16_t
 extern bool ReadUint16(struct BufferedFileReader* reader, uint16_t* dst);

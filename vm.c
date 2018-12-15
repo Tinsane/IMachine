@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "src/executer.h"
 #include "src/macro.h"
-#include "src/arg_parse.h"
+#include "src/parse_number.h"
 #include "src/buffered_file_reader.h"
 
 #define DEFAULT_TICKS_PER_ITER 10u

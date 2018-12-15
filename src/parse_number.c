@@ -6,13 +6,16 @@
 #include <stdbool.h>
 #include <memory.h>
 #include <ctype.h>
-#include "arg_parse.h"
+#include "parse_number.h"
 
 #define PARSE_NUMBER(FunctionName, TNum, TBigger, TNumLowerBound, TNumUpperBound) \
 bool FunctionName(char const *string, TNum *result) { \
     TBigger prefixValue = 0; \
     size_t string_len = strlen(string); \
     size_t i; \
+    if (string_len == 0) { \
+        return false; \
+    } \
     for (i = 0; i != string_len; ++i) { \
         if (!isdigit(string[i])) { \
             return false; \

@@ -9,7 +9,6 @@
 #include <ctype.h>
 #include "buffered_file_reader.h"
 #include "macro.h"
-#include "util.h"
 
 #define BUFFERED_DATA_START (reader->BufferedData + reader->BufferConsumed)
 #define BUFFERED_DATA_SIZE (reader->BufferedDataSize - reader->BufferConsumed)
@@ -31,7 +30,6 @@ struct BufferedFileReader *NewBufferedFileReader(char *filename, size_t bufferSi
     reader->BufferSize = bufferSize;
     reader->BufferedDataSize = 0;
     reader->BufferConsumed = 0;
-    reader->ErrNo = 0;
     return reader;
 }
 
@@ -57,7 +55,7 @@ static bool ReadToBuffer(struct BufferedFileReader *reader) {
                       reader->BufferSize - reader->BufferedDataSize,
                       reader->ReadFrom);
     if (ferror(reader->ReadFrom)) {
-        reader->ErrNo = errno;
+        errno;
     }
     reader->BufferedDataSize += bytesRead;
     reader->BufferedData[reader->BufferSize] = 0;
@@ -117,10 +115,6 @@ bool ReadLine(struct BufferedFileReader* reader, char* dst, size_t lengthLimit) 
         ++reader->BufferConsumed;
         --lengthLimit;
     }
-}
-
-extern int GetErrNo(struct BufferedFileReader *reader) {
-    return reader->ErrNo;
 }
 
 extern bool IsError(struct BufferedFileReader *reader) {

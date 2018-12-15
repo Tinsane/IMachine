@@ -69,13 +69,13 @@ static bool Execute_ ##name(uint16_t rawOperation, uint16_t registers[], uint16_
 #define CHECK_SP_ALIGNMENT() FAIL_INSTRUCTION_IF(SP & 1u, UNALIGNED_STACK_ACCESS_MSG)
 
 #define SUBMIT_INSTRUCTION() \
-    FAIL_INSTRUCTION_IF(IP + 2 == 0, IP_OUT_OF_MEMORY_MSG); \
-    IP += 2; \
+    FAIL_INSTRUCTION_IF(IP + 2u == 0u, IP_OUT_OF_MEMORY_MSG); \
+    IP += 2u; \
     return true
 
 #define INCREASE_SP() \
     FAIL_INSTRUCTION_IF(SP + 1u == 0u || SP + 2u == 0u, STACK_OVERFLOW_MSG); \
-    SP += 2
+    SP += 2u
 
 #define DECREASE_SP() \
     FAIL_INSTRUCTION_IF(SP < 2u, STACK_OVERFLOW_MSG); \

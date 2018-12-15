@@ -13,7 +13,7 @@ WARN_OPTS=-Wall -Werror -pedantic
 
 COVERAGE=-fprofile-instr-generate -fcoverage-mapping
 
-.PHONY: clean coverage all
+.PHONY: clean coverage all asm vm check
 
 clean:
 	find . -name '*.o' -delete
@@ -24,11 +24,27 @@ CFLAGS=$(WARN_OPTS) $(INCLUDES) -std=c11 $(COVERAGE)
 CXXFLAGS=$(WARN_OPTS) $(INCLUDES) -std=c++17 $(COVERAGE)
 LDFLAGS=-lm -lpthread $(COVERAGE)
 
-all: asm vm
+SRC = \
+		src/parse_number.o \
+		src/assembler.o \
+		src/code_line.o \
+		src/tokenized_reader.o \
+		src/buffered_file_reader.o \
+		src/instruction_set.o \
+		src/subprocess.o \
+		src/executer.o
+
+UNIT_TESTS = \
+		unit_tests/test_code_line.o \
+		unit_tests/test_parse_number.o \
+		unit_tests/test_instruction_set.o \
+		unit_tests/test_tokenized_reader.o
+
+all: asm vm check
 
 asm: \
 		asm.o \
-		src/arg_parse.o \
+		src/parse_number.o \
 		src/assembler.o \
 		src/code_line.o \
 		src/tokenized_reader.o \
@@ -37,30 +53,21 @@ asm: \
 
 vm: \
 		vm.o \
-		src/arg_parse.o \
+		src/parse_number.o \
 		src/buffered_file_reader.o \
 		src/instruction_set.o \
 		src/subprocess.o \
 		src/executer.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
-test_long_number: \
-		long_number.o \
+check: \
+		$(SRC) \
 		$(GTEST)/src/gtest-all.o \
 		$(GTEST)/src/gtest_main.o \
-		tests/test_long_number.o
+		$(UNIT_TESTS)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
-$(GTEST)/src/gtest-all.o: \
-	$(GTEST)/src/gtest-all.cc
-
-$(GTEST)/src/gtest_main.o: \
-	$(GTEST)/src/gtest_main.cc
-
-test_long_number.o: \
-	tests/test_long_number.cc
-
-coverage: test_long_number
+coverage: check
 	LLVM_PROFILE_FILE=$^.profraw ./$^
 	$(LLVM_PROFDATA) merge -sparse $^.profraw -o $^.profdata
 	$(LLVM_COV) $(COVERAGE_FORMAT) \
