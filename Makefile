@@ -47,7 +47,7 @@ UNIT_TESTS = \
 		unit_tests/test_non_jump_instructions.o \
 		unit_tests/test_tokenized_reader.o
 
-.PHONY: clean coverage all asm vm check
+.PHONY: clean coverage all check
 
 clean:
 	find . -name '*.o' -delete
