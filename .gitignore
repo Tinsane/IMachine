@@ -10,3 +10,4 @@ vm
 googletest/
 cmake*
 CMakeLists.txt
+input.txt
