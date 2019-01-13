@@ -51,11 +51,11 @@ UNIT_TESTS = \
 
 clean:
 	find . -name '*.o' -delete
-	rm asm
-	rm vm
-	rm check
-	rm *.profdata
-	rm *.profraw
+	rm -f asm
+	rm -f vm
+	rm -f check
+	rm -f *.profdata
+	rm -f *.profraw
 
 all: asm vm check
 
